@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+    <script src="~/js/Slides.js"></script>
+    <link href="~/js/metisMenu/metisMenu.min.css" rel="stylesheet" />
+    <link href="~/CSS/bootstrap.css" rel="stylesheet" />
+    <link href="~/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/CSS/DiaChi.css" rel="stylesheet" />
+    <link href="~/CSS/ChiTietSP.css" rel="stylesheet" />
+    <link href="~/CSS/Home.css" rel="stylesheet" />
+    <script src="~/JQuery/Detail.js"></script>
+    <link href="~/CSS/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700ii%7CRoboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic"
+          rel="stylesheet">
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/Plugin/ckfinder/ckfinder.js"></script>
+    <script src="~/Plugin/ckeditor/ckeditor.js"></script>
+    <link href="~/js/jquery-ui-1.13.0.custom/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/js/jquery-ui-1.13.0.custom/jquery-ui.min.js"></script>
+    <link href="~/CSS/Slides.css" rel="stylesheet" />
+</head>
+<body style="background-color:#eaeaea;">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Them", "Index", "SanPham")</li>
+                    <li>@Html.ActionLink("ChiTiet", "Detail", "SanPham")</li>
+                    <li>@Html.ActionLink("DiaChi", "Index", "DiaChi")</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <br /><br /><br />
+    <div id="header" style="background-color:#25a2ff">
+        <div id="header-mid" class="my-4">
+            <div class="container">
+                <br />
+                <div class="row">
+                    <div class="col-lg-1 pl-0">
+                        <a href="#">
+                            <div class="d-flex h-100 align-items-center justify-content-lg-start justify-content-center">
+
+                                <img src="~/image/logotiki.png" class="img-fluid" width="50px" alt="Logo">
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class=" col-md-6">
+
+
+
+                        @using (Html.BeginForm("kqTimKiem", "SanPham"))
+                        {
+                            <input type="text" name="key" style="height: 50px; border: none; border-radius: 5px 5px; width:450px " placeholder="Tìm sản phẩm,danh mục hay thương hiệu mong muốn..." class="form-inline" />
+
+                            <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-info" style="background-color: #1e27b5; height: 50px">
+
+
+
+                        }
+
+                        <ul class="navbar mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Tất cả thịt rau củ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Thịt</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Hàng đông lạnh</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Trái cây</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Hải sản</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Gạo</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-2 text-center" style="margin:10px">
+
+                        <ul class="texformDN">
+
+
+                            @if (Session["idUser"] != null)
+                            {
+
+                                <li class="dndk">
+
+                                    @Html.ActionLink("Trang quảng trị", "index", "SanPham")
+                                </li>
+                                <li class="dndk">
+                                    <a href="/Home/Logout">Logout</a>
+                                </li>
+                            }
+                            else
+                            {
+
+                                <li class="dndk">
+
+                                    @Html.ActionLink("Đăng nhập/", "Login", "Home")
+                                    @Html.ActionLink("Đăng ký", "Register", "Home")
+
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-2 text-center" style="margin:10px">
+                        <ul class="texformDN">
+                            <li class="dndk">
+                                <a href="@Url.Action("Index","Cart")">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <span class="notify" id="CartCount">@Session["count"]</span>
+                                    Giỏ hàng
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="background-color:white;">
+        <ul class="navbar mb-2 mb-lg-0" style="margin-left: 200PX; ">
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Thịt, rau củ</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Bách hoá</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Nhà cửa</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Thiết bị số</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Điện thoại</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Mẹ và bé</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Làm đẹp</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Gia dụng</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Thời trang nữ</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Thời trang nam</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Giầy nữ</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Túi nữ</a>
+            </li>
+            <li class="nav-item2">
+                <a class="nav-link" href="#">Giầy nam</a>
+            </li>
+            <li class="nav-item2 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Balo vali</a></li>
+                    <li><a class="dropdown-item" href="#">Phụ kiện</a></li>
+                    <li><a class="dropdown-item" href="#">Đồng hồ</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+    <br />
+    
+    <br />
+    <div>
+    </div>
+    <br />
+    <section class="">
+        <section class="footer clearfix bg.footer">
+            <div class="container" style="background-color:white">
+                <div class="row">
+
+                    @RenderBody()
+                </div>
+            </div>
+
+        </section>
+    </section>
+
+
+    <div style="margin:30px">
+
+    </div>
+    <hr />
+
+    <div>
+
+        <section class="footer clearfix bg.footer" style="background-color:white">
+            <section class="footer clearfix bg.footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h5><b>Hỗ trợ khách hàng</b></h5><br />
+                            Hotline: 1900-6035<br />
+                            (1000 đ/phút, 8-21h kể cả T7, CN)<br /><br />
+
+                            Các câu hỏi thường gặp<br />
+                            Gửi yêu cầu hỗ trợ<br />
+                            Hướng dẫn đặt hàng<br />
+                            Phương thức vận chuyển<br />
+                            Chính sách đổi trả<br />
+                            Hướng dẫn trả góp<br />
+                            Chính sách hàng nhập khẩu<br />
+                            Hỗ trợ khách hàng: hotro@tiki.vn<br /><br />
+
+                            Báo lỗi bảo mật: security@tiki.vn
+
+                        </div>
+                        <div class="col-md-2">
+                            <h5><b>Về Tiki</b></h5><br />
+                            Giới thiệu Tiki<br />
+                            Tuyển dụng<br />
+                            Chính sách bảo mật thanh toán<br />
+                            Chính sách bảo mật thông tin cá nhân<br />
+                            Chính sách giải quyết khiếu nại<br />
+                            Điều khoản sử dụng<br />
+                            Giới thiệu Tiki Xu<br />
+                            Tiếp thị liên kết cùng Tiki<br />
+                            Bán hàng doanh nghiệp
+                        </div>
+                        <div class="col-md-2">
+                            <h5><b>Hợp tác và liên kết</b></h5><br />
+                            Quy chế hoạt động Sàn GDTMĐT<br />
+                            Bán hàng cùng Tiki<br />
+                            <h5> Chứng nhận bởi</h5><br />
+                            <img src="~/image/bo-cong-thuong-2 (3).png" />
+                            <a href="http://online.gov.vn/Home/WebDetails/21193?AspxAutoDetectCookieSupport=1"> <img src="~/image/logoCCDV (2).png" /></a>
+
+                        </div>
+                        <div class="col-md-2">
+                            <h5><b>Phương thức thanh toán</b></h5><br />
+                            <img src="~/image/screenshot_1635338671 (1).png" /><br />
+                            <h5>Dịch vụ giao hàng</h5><br />
+                            <img src="~/image/screenshot_1635339227.png" /><br />
+                        </div>
+                        <div class="col-md-4">
+                            <h5><b>Kết nối với chúng tôi</b></h5><br />
+                            <a href="https://www.facebook.com/tiki.vn/"> <img src="~/image/1200px-Facebook_Logo_(2019).png" /></a>
+                            <a href="https://www.youtube.com/user/TikiVBlog"> <img src="~/image/98907999.png" /></a>
+                            <a href="https://zalo.me/589673439383195103"> <img src="~/image/zalo-icon.png" /></a>
+                            <h5><b>Tải ứng dụng trên điện thoại</b></h5>
+                            <div class="col-md-4">
+                                <a href="#"> <img src="~/image/screenshot_1636878179.png" /></a>
+                            </div>
+                            <div class="col-md-5">
+                                <a href="https://play.google.com/store/apps/details?id=vn.tiki.app.tikiandroid"> <img src="~/image/screenshot_1636878203.png" /></a>
+                                <a href="https://apps.apple.com/vn/app/id958100553"> <img src="~/image/screenshot_1636878192.png" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div>
+
+                        Địa chỉ văn phòng: 52 Út Tịch, phường 4, quận Tân Bình, thành phố Hồ Chí Minh<br />
+                        Tiki nhận đặt hàng trực tuyến và giao hàng tận nơi, chưa hỗ trợ mua và nhận hàng trực tiếp tại văn phòng hoặc trung tâm xử lý đơn hàng<br />
+                        Giấy chứng nhận Đăng ký Kinh doanh số 0309532909 do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 06/01/2010<br />
+                        © 2021 - Bản quyền của Công Ty Cổ Phần Ti Ki - Tiki.vn<br />
+                    </div>
+                    <hr />
+                    <div>
+                        <h4><b>Tiki - Thật nhanh, thật chất lượng, thật rẻ</b></h4> <br />
+                        <b>Tiki có tất cả</b><br />
+                        Với hàng triệu sản phẩm từ các thương hiệu, cửa hàng uy tín, hàng nghìn loại mặt hàng từ Điện thoại smartphone tới Rau củ quả tươi, kèm theo dịch vụ giao hàng siêu tốc TikiNOW, Tiki mang đến cho bạn một trải nghiệm mua sắm online bắt đầu bằng chữ tín. Thêm vào đó, ở Tiki bạn có thể dễ dàng sử dụng vô vàn các tiện ích khác như mua thẻ cào, thanh toán hoá đơn điện nước, các dịch vụ bảo hiểm.<br />
+                        Khuyến mãi, ưu đãi tràn ngập<br />
+                        Bạn muốn săn giá sốc, Tiki có giá sốc mỗi ngày cho bạn! Bạn là tín đồ của các thương hiệu, các cửa hàng Official chính hãng đang chờ đón bạn. Không cần săn mã freeship, vì Tiki đã có hàng triệu sản phẩm trong chương trình Freeship+, không giới hạn lượt đặt, tiết kiệm thời gian vàng bạc của bạn. Mua thêm gói TikiNOW tiết kiệm để nhận 100% free ship 2h & trong ngày, hoặc mua gói TikiNOW cao cấp để nhận được 100% freeship, áp dụng cho 100% sản phẩm, 100% tỉnh thành Việt Nam. Bạn muốn tiết kiệm hơn nữa? Đã có TikiCARD, thẻ tín dụng Tiki hoàn tiền 15% trên mọi giao dịch (tối đa hoàn 600k/tháng)<br />
+                    </div>
+                </div>
+
+            </section>
+
+        </section>
+
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

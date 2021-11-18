@@ -1,0 +1,36 @@
+﻿@using WebTiki.Models;
+@model IEnumerable<WebTiki.Models.SANPHAM>
+@{
+    ViewBag.Title = "kqTimKiem";
+    ViewBag.Heading = "Kết quả tìm kiếm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <ul class="products">
+
+        @foreach (var item in Model)
+
+
+        {
+            <li>
+                <figure style="margin:10px">
+                    <a href="@Url.Action("ChiTietSP","SanPham",new {MaSP=@item.MaSP})" style="text-decoration: none;color:black;">
+                        <div class="parent">
+                            <img class="image1" src="~/Upload/ImgSP/@item.Img" style="width:300px;" />
+                        </div>
+
+
+                        <h5 class="texnametsp">@item.TenSP</h5>
+
+                        <h4 class="card-text1">@item.GiaMoi ₫</h4>
+                        <h5 class="card-text2">@item.GiaCu ₫</h5>
+                    </a>
+                </figure>
+            </li>
+        }
+
+
+    </ul>
+</div>

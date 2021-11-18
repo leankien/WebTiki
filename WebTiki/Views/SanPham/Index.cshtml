@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="margin:20px">
+    <h2>Danh sách Sản phẩm</h2>
+
+    <form action="/SanPham/Index" method="post">
+        <a href="/SanPham/Create" class="btn btn-primary">Thêm mới</a>
+    </form>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+
+                <td>Sản phẩm</td>
+                <td>Hình</td>
+                <td>Giá củ</td>
+                <td>Giá mới</td>
+                <td>Bài viết</td>
+                <td>Tóm tắt</td>
+                <td>Sửa</td>
+                <td>Xóa</td>
+
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.TenSP</td>
+                    <td><img style="width:50px;" src="~/Upload/ImgSP/@item.Img" /></td>
+                    <td>@item.GiaCu</td>
+                    <td>@item.GiaMoi</td>
+                    <td><span style=" width:300px; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; ">@item.BaiViet</span></td>
+                    <td><span style=" overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical;">@item.TomTat</span></td>
+                    <td><a href="/SanPham/Edit/@item.MaSP">Sửa</a></td>
+                    <td><a href="/SanPham/Delete/@item.MaSP">Xóa</a></td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>
+
+

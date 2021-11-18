@@ -1,0 +1,302 @@
+﻿@model WebTiki.Models.SANPHAM
+
+@{
+    ViewBag.Heading = "Chi tiết sản phẩm";
+    ViewBag.Title = "ChiTietSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#addtocart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = @Model.MaSP;
+            // lấy số lượng đặt hàng
+            model.Quantity = $("#quantity").val();
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Thêm giỏ hàng thành công!")
+                    $('#CartCount').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        $('#spinner').spinner();
+    });
+</script>
+<section class="footer clearfix bg.footer" style="margin:20px;">
+    <section class="footer clearfix bg.footer" style="height:550px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" style="border-right: 1px outset #ebebeb; ">
+                    <img src="~/Upload/ImgSP/@Model.Img" style="width:800px;" />
+                    <br /><br /><br />
+                    <div>
+                        <span>Chia sẻ: </span>
+                        <img src="~/image/1200px-Facebook_Logo_(2019).png" style="width:30px">
+                        <img src="~/image/zalo-icon.png" style="width:30px">
+                        <img src="~/image/pinterest-logo-8561DDA2E1-seeklogo.com.png" style="width:30px">
+                        <img src="~/image/Twitter_t_Logo.svg.png" style="width:30px">&emsp;|
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-7">
+                    <div style="margin-left:15px;">
+                        Thương hiệu: @Model.TomTat</br/>
+                        <span style=" font-size:30px"> @Model.TenSP</span>
+                    </div>
+                    <div class="col-md-7">
+                        <div style="border-block: 0px; background-color: #efefef; width: 400px; height:100px; ">
+                            <div style="margin-left:10px;">
+                                <span style="text-align:left;font-size:30px"><b> @Model.GiaMoi ₫</span></b>&emsp;<span class="card-text2">@Model.GiaCu ₫</span><br/>
+                                <a href="https://hotro.tiki.vn/s/topic/0TO5Y00000BiIPaWAN/ch%C6%B0%C6%A1ng-tr%C3%ACnh-r%E1%BA%BB-h%C6%A1n-ho%C3%A0n-ti%E1%BB%81n">
+                                    <span style="color:red"><b>Rẻ hơn hoàn tiền</b></span><br />
+                                    Hoàn tiền 15% tối đa 600k/tháng<br /><br />
+                                </a>
+                            </div>
+                        </div>
+                        <hr />
+                        Giao đến:<br />
+                        <div style="border: 1px groove; width: 400px; height: 50px; border-radius: 10px; ">
+                            <div class="row" style="margin:10px">
+                                <img src="~/image/imgLogin/5798c9bee17003cf7995c37930f0eeac.png" style="width:50px">|<span style="color:#119435"><b>Thứ 3, ngày 23/11</b></span><br />
+                                <span>164.000 đ (Freeship 100K đh 2M )</span>
+                            </div>
+                        </div><br />
+                        <a href="https://tiki.vn/hoi-vien-tikinow?src=pdp_shipping_widget">
+                            <span>Mua gói TikiNOW nhận 100% Freeship</span>
+                        </a>
+                        <hr />
+                        <h4>Số lượng:</h4>
+                        <div class="form-group col-md flex-grow-0">
+                            <div class="input-group mb-3 input-spinner">
+                                
+                                <input class="btn btn-outline-danger" onclick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN(qty) &amp; qty > 1 ) result.value--;return false;" type='button' value='-' />
+                                <input id='quantity' class="form-control"style="width:50px;text-align:center" min='1' name='quantity' type='text' value='1' />
+                                <input class="btn btn-outline-danger" onclick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN(qty)) result.value++;return false;" type='button' value='+' />
+
+
+
+                            </div>
+                        </div>
+                        <div>
+
+
+                            <button class="btnmua" id="addtocart">Chọn mua</button>
+
+                           
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-1">
+
+                    </div>
+
+                    <div class="col-md-2">
+                        <br />
+                        <div class="storee" style="border: 1px groove; width: 320px; height: 400px; border-radius: 5px; ">
+
+                            <h5><b><img src="~/image/imgLogin/mau-hinh-tron-day-du_111540196.png" style="width:50px"> Phương Phương Store</b></h5><br />
+
+                            <div class="row" style="text-align:center">
+                                <div class="col-md-4" style="border-right: 1px outset #ebebeb; ">
+                                    <h5><b>4.4 / 53.1k+</b></h5><span class="txtxam"> đánh giá</span>
+                                </div>
+                                <div class="col-md-4" style="border-right: 1px outset #ebebeb; ">
+                                    <h5><b>430</b></h5><span class="txtxam"> Người theo dõi</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5><b>79%</b></h5><span class="txtxam"> Phản hồi Chat</span>
+                                </div>
+                            </div>
+                            <div style="text-align:center">
+                                <button class="change"><img src="~/image/imgLogin/blue_repicthousebase_1484336386-1.png" style="width:30px">Xem Shop</button>
+                                <button class="change"><img src="~/image/imgLogin/plus_PNG63.png" style="width:30px">Theo Dõi</button>
+                            </div>
+                            <hr />
+                            <span class="txtxam">Hướng dẫn bảo hành</span>&emsp;&emsp;&emsp;&emsp;&emsp;<a href="https://hotro.tiki.vn/s/">Xem chi tiết</a>
+                            <hr />
+                            <div class="row" style="text-align:center">
+
+                                <div class="col-md-4 ">
+                                    <img src="~/image/imgLogin/screenshot_1636887475.png" style="width:30px">
+                                    <h5>Hoàn tiền 111% nếu hàng giả</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/image/imgLogin/screenshot_1636887499.png" style="width:30px">
+                                    <h5>Mở hộp kiểm tra nhận hàng</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/image/imgLogin/screenshot_1636887512.png" style="width:30px">
+                                    <h5>Đổi trả trong 30 ngày nếu sp lỗi</h5>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div style="border: 1px groove; width: 320px; height: 50px; border-radius: 5px; ">
+                                <div class="row" style="text-align:center">
+
+                                    <div class="col-md-7 ">
+                                        <b> 14 nhà bán khác</b><br />Giá từ 279.000 ₫
+                                    </div>
+                                    <div class="col-md-5 " style="text-align:left">
+                                        <button class="change">So Sánh</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</section>
+
+<br />
+
+<section class="footer clearfix bg.footer">
+    <section class="footer clearfix bg.footer">
+        <div class="container" style="background-color:white">
+
+
+            <h3><b> Sản phẩm liên quan</b></h3>
+
+
+        </div>
+
+    </section>
+</section>
+<br />
+<section class="footer clearfix bg.footer">
+    <section class="footer clearfix bg.footer">
+        <div class="container">
+            <div class="row">
+
+                <div class=" col-md-9  " style="background-color:white;">
+                    <h3><b> Chi tiết sản phẩm</b></h3>
+                    @Html.Raw(@Model.BaiViet)
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<dl class="dl-horizontal">
+    <dt>
+        Comment
+    </dt>
+
+    <dd>
+        <div class="commentBox">
+            @using (Html.BeginForm("Create", "ArticlesComments", FormMethod.Post, new { onsubmit = "return SubmitComment()" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">
+                            Your rating <span style="font-weight:normal;">(1 start is bad, 5 star is good)</span>
+                        </label>
+                        <div class="col-md-7">
+                            <div onmouseout="CRateSelected()">
+                                <span class="starFade" id="Rate1" onclick="CRate(1)" onmouseover="CRateOver(1)" onmouseout="CRateOut(1)"></span><span class="starFade" id="Rate2" onclick="CRate(2)" onmouseover="CRateOver(2)" onmouseout="CRateOut(2)"></span><span class="starFade" id="Rate3" onclick="CRate(3)" onmouseover="CRateOver(3)" onmouseout="CRateOut(3)"></span><span class="starFade" id="Rate4" onclick="CRate(4)" onmouseover="CRateOver(4)" onmouseout="CRateOut(4)"></span><span class="starFade" id="Rate5" onclick="CRate(5)" onmouseover="CRateOver(5)" onmouseout="CRateOut(5)"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <textarea name="Comment" id="Comment" required rows="5" style="width:100%;" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="hidden" name="ArticleId" value="@ViewBag.ArticleId" />
+                            <input type="hidden" name="Rating" id="Rating" value="0" />
+                            <input type="submit" id="btnRegister" name="btnRegister" value="Submit Comment" class="btn btn-warning" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </dd>
+
+</dl>
+<script>
+    function SubmitComment() {
+        if ($("#Rating").val() == "0") {
+            alert("Please rate this service provider.");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function CRate(r) {
+        $("#Rating").val(r);
+        for (var i = 1; i <= r; i++) {
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+        // unselect remaining
+        for (var i = r + 1; i <= 5; i++) {
+            $("#Rate" + i).attr('class', 'starFade');
+        }
+    }
+
+    function CRateOver(r) {
+        for (var i = 1; i <= r; i++) {
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+    }
+
+    function CRateOut(r) {
+        for (var i = 1; i <= r; i++) {
+            $("#Rate" + i).attr('class', 'starFade');
+        }
+    }
+
+    function CRateSelected() {
+        var setRating = $("#Rating").val();
+        for (var i = 1; i <= setRating; i++) {
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+

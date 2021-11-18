@@ -1,0 +1,14 @@
+﻿@model List<WebTiki.Models.DanhMuc>
+
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var category in Model)
+{
+<li>
+    @Html.ActionLink(@category.DanhMucName, "DanhMuc", "Home", new { DanhMucID = @category.DanhMucID }, null);
+</li>
+
+}>

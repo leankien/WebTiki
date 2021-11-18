@@ -1,0 +1,67 @@
+﻿button.launch {
+    background-color: #F9A300;
+    border: none;
+    height: 40px;
+    padding: 5px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+    button.launch:hover {
+        cursor: pointer;
+        background-color: #FABD44;
+    }
+
+
+button.change {
+    background-color: #ffffff;
+    border: 2px groove #74d1ff;
+    padding: 5px 15px;
+    color: #2b9bee;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.txtxam {
+    font-size:12px;
+    color: #808080
+}
+button:active {
+    outline: none;
+    border: none;
+}
+
+button.btnmua {
+    background-color: #f10909;
+    border: none;
+    width:200px;
+    height: 60px;
+    padding: 5px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+    button.btnmua:hover {
+        cursor: pointer;
+
+        background-color: #f53b3b;
+    }
+button.btnchat {
+    background-color: #ffffff;
+    border: 2px groove #74d1ff;
+    height: 40px;
+    padding: 5px 15px;
+    color: #2b9bee;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+}

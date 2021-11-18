@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <meta name="viewport" initial-scale=0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<div style="margin:20px">
+    <div >
+        <h4><b> Địa chỉ giao hàng</b></h4><br />
+        <p>Chọn địa chỉ giao hàng có sẵn bên dưới:</p>
+        @foreach (var item in Model)
+        {
+            <div style="border: 4px dashed green; width:500px">
+                <div style="margin:30px">
+                    <h3> @item.TenKH</h3>
+                    <p>Địa chỉ: @item.DiaChi, @item.PhuongXa, @item.QuanHuyen, @item.TinhTP</p>
+                    <p>Điện thoại:@item.DT</p><br />
+                    <button aria-expanded="false" class="btn btn-outline-danger" data-toggle="collapse" data-target="#" style="background-color:#0094ff; color:white">Giao đến địa chỉ này</button>
+                    <a href="/DiaChi/Delete/@item.MaDC"><button aria-expanded="false" class="btn btn-outline-danger"> Xóa</button></a>
+                </div>
+            </div>
+
+        }
+        <p>Bạn muốn giao hàng đến địa chỉ khác?<a href="#demo" aria-expanded="false" data-toggle="collapse" data-target="#demo" lass="btn btn-outline-danger"> Thêm địa chỉ giao hàng mới</a></p>
+
+    </div>
+
+
+
+
+
+
+
+
+    <div id="demo" class="collapse">
+
+
+        <form action="/DiaChi/Create" method="post" enctype="multipart/form-data">
+
+            <div>
+                <h4 class="mb-3">Thông tin khách hàng</h4>
+                <input type="hidden" class="form-control" id="MaDC" name="MaDC" disabled />
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="TenKH">Họ tên</label>
+                        <input type="text" class="form-control" name="TenKH" id="TenKH"
+                               placeholder="Nhập họ và tên">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="DT"> Điện thoại di động</label>
+                        <input type="text" class="form-control" name="DT" id="DT"
+                               placeholder="Nhập số điện thoại">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="TinhTP">Tỉnh/Thành phố</label>
+                        <input type="text" class="form-control" name="TinhTP" list="TinhTP"  placeholder="Chọn Tỉnh/Thành phố">
+                        <datalist id="TinhTP" style="width:300px">
+                            <option value=" An Giang Thành, phố Long Xuyên ">
+                            <option value=" Bà Rịa – Vũng Tàu, Thành phố Bà Rịa ">
+                            <option value=" Bạc Liêu, Thành phố Bạc Liêu ">
+                            <option value=" Bắc Giang, Thành phố Bắc Giang ">
+                            <option value=" Bắc Kạn, Thành phố Bắc Kạn ">
+                            <option value=" Bắc Ninh, Thành phố Bắc Ninh ">
+                            <option value=" Bến Tre, Thành phố Bến Tre ">
+                            <option value=" Bình Dương, Thành phố Thủ Dầu Một ">
+                            <option value=" Bình Định, Thành phố Quy Nhơn ">
+                            <option value=" Bình Phước, Thành phố Đồng Xoài ">
+                            <option value=" Bình Thuận, Thành phố Phan Thiết ">
+                            <option value=" Cà Mau, Thành phố Cà Mau ">
+                            <option value=" Cao Bằng, Thành phố Cao Bằng ">
+                            <option value=" Cần Thơ, Quận Ninh Kiều ">
+                            <option value=" Đà Nẵng, Quận Hải Châu">
+                            <option value=" Đắk Lắk, Thành phố Buôn Ma Thuột ">
+                            <option value=" Đắk Nông, Thành phố Gia Nghĩa ">
+                            <option value=" Điện Biên, Thành phố Điện Biên Phủ ">
+                            <option value=" Đồng Nai, Thành phố Biên Hòa ">
+                            <option value=" Đồng Tháp, Thành phố Cao Lãnh ">
+                            <option value=" Gia Lai, Thành phố Pleiku ">
+                            <option value=" Hà Giang, Thành phố Hà Giang ">
+                            <option value=" Hà Nam, Thành phố Phủ Lý ">
+                            <option value=" Hà Nội, Quận Hoàn Kiếm ">
+                            <option value=" Hà Tĩnh, Thành phố Hà Tĩnh ">
+                            <option value=" Hải Dương,Thành phố Hải Dương ">
+                            <option value=" Hải Phòng, Quận Hồng Bàng ">
+                            <option value=" Hậu Giang, Thành phố Vị Thanh ">
+                            <option value=" Hòa Bình, Thành phố Hòa Bình ">
+                            <option value=" Thành phố Hồ Chí Minh, Quận 1 ">
+                            <option value=" Hưng Yên, Thành phố Hưng Yên ">
+                            <option value=" Khánh Hòa, Thành phố Nha Trang ">
+                            <option value=" Kiên Gian, Thành phố Rạch Giá ">
+                            <option value=" Kon Tum, Thành phố Kon Tum">
+                            <option value=" Lai Châu, Thành phố Lai Châu ">
+                            <option value=" Lạng Sơn, Thành phố Lạng Sơn ">
+                            <option value=" Lào Cai, Thành phố Lào Cai ">
+                            <option value=" Lâm Đồng, Thành phố Đà Lạt ">
+                            <option value=" Long An, Thành phố Tân An ">
+                            <option value=" Nam Định, Thành phố Nam Định ">
+                            <option value=" Nghệ An, Thành phố Vinh ">
+                            <option value=" Ninh Bình, Thành phố Ninh Bình ">
+                            <option value=" Ninh Thuận, Thành phố Phan Rang – Tháp Chàm ">
+                            <option value=" Phú Thọ, Thành phố Việt Trì ">
+                            <option value=" Phú Yên, Thành phố Tuy Hòa ">
+                            <option value=" Quảng Bình, Thành phố Đồng Hới ">
+
+
+                        </datalist>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="QuanHuyen">Quận/Huyện</label>
+                        <input type="text" class="form-control" name="QuanHuyen" id="QuanHuyen"
+                               placeholder="Nhập Quận/Huyện">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="PhuongXa">Phường/Xã</label>
+                        <input type="text" class="form-control" name="PhuongXa" id="PhuongXa"
+                               placeholder="Nhập Phường/Xã">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="DiaChi">Địa chỉ</label>
+                        <input type="text" class="form-control" name="DiaChi" id="DiaChi"
+                               placeholder="Nhâp địa chỉ">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="LoaiDC">Loại địa chỉ</label><br />
+                        <input name="LoaiDC" id="LoaiDC" type="radio" value="Nhà riêng" checked> Nhà riêng &emsp;&emsp;&emsp;
+                        <input name="LoaiDC" id="LoaiDC" type="radio" value="trung cư"> trung cư<br>
+
+
+                    </div>
+                </div>
+
+
+                <hr class="mb-4">
+                <button class="btn btn-primary" type="submit"> Lưu </button>
+            </div>
+        </form>
+
+
+    </div>
+
+</div>

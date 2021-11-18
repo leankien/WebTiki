@@ -1,0 +1,138 @@
+﻿.bg-logo {
+    background: #0094ff;
+}
+
+.bg-menu {
+    background: #ffffff;
+}
+
+bg.footer {
+    background-color: #ffffff;
+}
+
+* {
+    box-sizing: border-box
+}
+
+h2 {
+    text-align: center;
+}
+
+.slide {
+    margin: 0 100px;
+}
+
+.btntk {
+    color: aliceblue;
+    background-color: #376d93;
+    width: 150px;
+}
+
+    .btntk:hover {
+        background-color: #ff6a00;
+    }
+/* Slideshow container */
+.slideshow-container {
+    max-width: 930px;
+}
+/* Ẩn các slider */
+.mySlides {
+    display: none;
+}
+
+
+/* định dạng các chấm chuyển đổi các slide */
+.dot {
+    cursor: pointer;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 1s ease;
+}
+    /* khi được hover, active đổi màu nền */
+    .active, .dot:hover {
+        background-color: #717171;
+    }
+
+/* Thêm hiệu ứng khi chuyển đổi các slide */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 5s;
+    animation-name: fade;
+    animation-duration: 5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.list-product-title {
+    width: 100%;
+    text-transform: uppercase;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.list-product-subtitle {
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/*product card*/
+.card-product {
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 1px 1px 4px;
+    transform: scale(1.05);
+}
+
+.btn:hover {
+    background: #ff6a00;
+}
+
+/* SP */
+.products {
+    list-style-type: none;
+}
+
+    .products li a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        float: left;
+        width: 240px; /* bề rộng bao nhiêu tùy bạn */
+        height: 300px;
+        text-align: center; /* để hình ảnh, tên và giá sản phẩm nằm vô giữa */
+    }
+        .products li a:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,.1);
+        }
+

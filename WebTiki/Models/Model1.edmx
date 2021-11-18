@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SQLSanPhamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Articals">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="ArticlesComments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+          <Property Name="CommentOn" Type="datetime" />
+          <Property Name="ArticalId" Type="int" />
+          <Property Name="Rating" Type="int" />
+        </EntityType>
+        <EntityType Name="DanhMuc">
+          <Key>
+            <PropertyRef Name="DanhMucID" />
+          </Key>
+          <Property Name="DanhMucID" Type="int" Nullable="false" />
+          <Property Name="DanhMucName" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="DiaChiKH">
+          <Key>
+            <PropertyRef Name="MaDC" />
+          </Key>
+          <Property Name="MaDC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenKH" Type="nvarchar" MaxLength="100" />
+          <Property Name="DT" Type="nvarchar" MaxLength="100" />
+          <Property Name="TinhTP" Type="nvarchar" MaxLength="100" />
+          <Property Name="QuanHuyen" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhuongXa" Type="nvarchar" MaxLength="100" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
+          <Property Name="LoaiDC" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SANPHAM">
+          <Key>
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="MaSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenSP" Type="nvarchar" MaxLength="200" />
+          <Property Name="GiaCu" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="GiaMoi" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BaiViet" Type="nvarchar(max)" />
+          <Property Name="TomTat" Type="nvarchar" MaxLength="250" />
+          <Property Name="Img" Type="nvarchar" MaxLength="250" />
+          <Property Name="DanhMucID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__ArticlesC__Artic__72C60C4A">
+          <End Role="Articals" Type="Self.Articals" Multiplicity="0..1" />
+          <End Role="ArticlesComments" Type="Self.ArticlesComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articals">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticlesComments">
+              <PropertyRef Name="ArticalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SANPHAM_DanhMuc">
+          <End Role="DanhMuc" Type="Self.DanhMuc" Multiplicity="0..1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMuc">
+              <PropertyRef Name="DanhMucID" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="DanhMucID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SQLSanPhamModelStoreContainer">
+          <EntitySet Name="Articals" EntityType="Self.Articals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArticlesComments" EntityType="Self.ArticlesComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhMuc" EntityType="Self.DanhMuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiaChiKH" EntityType="Self.DiaChiKH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ArticlesC__Artic__72C60C4A" Association="Self.FK__ArticlesC__Artic__72C60C4A">
+            <End Role="Articals" EntitySet="Articals" />
+            <End Role="ArticlesComments" EntitySet="ArticlesComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SANPHAM_DanhMuc" Association="Self.FK_SANPHAM_DanhMuc">
+            <End Role="DanhMuc" EntitySet="DanhMuc" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SQLSanPhamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SQLSanPhamEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="SQLSanPhamModel.sysdiagrams" />
+          <EntitySet Name="DanhMuc" EntityType="SQLSanPhamModel.DanhMuc" />
+          <EntitySet Name="DiaChiKH" EntityType="SQLSanPhamModel.DiaChiKH" />
+          <EntitySet Name="SANPHAM" EntityType="SQLSanPhamModel.SANPHAM" />
+          <AssociationSet Name="FK_SANPHAM_DanhMuc" Association="SQLSanPhamModel.FK_SANPHAM_DanhMuc">
+            <End Role="DanhMuc" EntitySet="DanhMuc" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+          <EntitySet Name="Articals" EntityType="SQLSanPhamModel.Articals" />
+          <EntitySet Name="ArticlesComments" EntityType="SQLSanPhamModel.ArticlesComments" />
+          <AssociationSet Name="FK__ArticlesC__Artic__72C60C4A" Association="SQLSanPhamModel.FK__ArticlesC__Artic__72C60C4A">
+            <End Role="Articals" EntitySet="Articals" />
+            <End Role="ArticlesComments" EntitySet="ArticlesComments" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="SQLSanPhamModel.Users" />
+          </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DanhMuc">
+          <Key>
+            <PropertyRef Name="DanhMucID" />
+          </Key>
+          <Property Name="DanhMucID" Type="Int32" Nullable="false" />
+          <Property Name="DanhMucName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SANPHAM" Relationship="SQLSanPhamModel.FK_SANPHAM_DanhMuc" FromRole="DanhMuc" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="DiaChiKH">
+          <Key>
+            <PropertyRef Name="MaDC" />
+          </Key>
+          <Property Name="MaDC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenKH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TinhTP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QuanHuyen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhuongXa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiDC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SANPHAM">
+          <Key>
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="MaSP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenSP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GiaCu" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GiaMoi" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BaiViet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TomTat" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Img" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DanhMucID" Type="Int32" />
+          <NavigationProperty Name="DanhMuc" Relationship="SQLSanPhamModel.FK_SANPHAM_DanhMuc" FromRole="SANPHAM" ToRole="DanhMuc" />
+        </EntityType>
+        <Association Name="FK_SANPHAM_DanhMuc">
+          <End Type="SQLSanPhamModel.DanhMuc" Role="DanhMuc" Multiplicity="0..1" />
+          <End Type="SQLSanPhamModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMuc">
+              <PropertyRef Name="DanhMucID" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="DanhMucID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Articals">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="ArticlesComments" Relationship="SQLSanPhamModel.FK__ArticlesC__Artic__72C60C4A" FromRole="Articals" ToRole="ArticlesComments" />
+        </EntityType>
+        <EntityType Name="ArticlesComments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CommentOn" Type="DateTime" Precision="3" />
+          <Property Name="ArticalId" Type="Int32" />
+          <Property Name="Rating" Type="Int32" />
+          <NavigationProperty Name="Articals" Relationship="SQLSanPhamModel.FK__ArticlesC__Artic__72C60C4A" FromRole="ArticlesComments" ToRole="Articals" />
+        </EntityType>
+        <Association Name="FK__ArticlesC__Artic__72C60C4A">
+          <End Type="SQLSanPhamModel.Articals" Role="Articals" Multiplicity="0..1" />
+          <End Type="SQLSanPhamModel.ArticlesComments" Role="ArticlesComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articals">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticlesComments">
+              <PropertyRef Name="ArticalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SQLSanPhamModelStoreContainer" CdmEntityContainer="SQLSanPhamEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SQLSanPhamModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhMuc">
+            <EntityTypeMapping TypeName="SQLSanPhamModel.DanhMuc">
+              <MappingFragment StoreEntitySet="DanhMuc">
+                <ScalarProperty Name="DanhMucName" ColumnName="DanhMucName" />
+                <ScalarProperty Name="DanhMucID" ColumnName="DanhMucID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiaChiKH">
+            <EntityTypeMapping TypeName="SQLSanPhamModel.DiaChiKH">
+              <MappingFragment StoreEntitySet="DiaChiKH">
+                <ScalarProperty Name="LoaiDC" ColumnName="LoaiDC" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="PhuongXa" ColumnName="PhuongXa" />
+                <ScalarProperty Name="QuanHuyen" ColumnName="QuanHuyen" />
+                <ScalarProperty Name="TinhTP" ColumnName="TinhTP" />
+                <ScalarProperty Name="DT" ColumnName="DT" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="MaDC" ColumnName="MaDC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SANPHAM">
+            <EntityTypeMapping TypeName="SQLSanPhamModel.SANPHAM">
+              <MappingFragment StoreEntitySet="SANPHAM">
+                <ScalarProperty Name="DanhMucID" ColumnName="DanhMucID" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="TomTat" ColumnName="TomTat" />
+                <ScalarProperty Name="BaiViet" ColumnName="BaiViet" />
+                <ScalarProperty Name="GiaMoi" ColumnName="GiaMoi" />
+                <ScalarProperty Name="GiaCu" ColumnName="GiaCu" />
+                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articals">
+            <EntityTypeMapping TypeName="SQLSanPhamModel.Articals">
+              <MappingFragment StoreEntitySet="Articals">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticlesComments">
+            <EntityTypeMapping TypeName="SQLSanPhamModel.ArticlesComments">
+              <MappingFragment StoreEntitySet="ArticlesComments">
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="ArticalId" ColumnName="ArticalId" />
+                <ScalarProperty Name="CommentOn" ColumnName="CommentOn" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SQLSanPhamModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

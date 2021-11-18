@@ -1,0 +1,261 @@
+﻿
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div id="header-mid" class="my-4">
+    <div class="container">
+        <div class="row">
+            <!-- logo -->
+            <div class="col-lg-2 pl-0">
+                <div class="d-flex h-100 align-items-center justify-content-lg-start justify-content-center">
+                    <a href="home.html">
+                        <img src="images/logo.png" class="img-fluid" width="150px" height="150px" alt="Logo">
+                    </a>
+                </div>
+            </div>
+            <!-- end logo -->
+            <!-- search-bar -->
+            <div class="col-lg-6 p-0">
+                <div class="form-group d-flex h-100 align-items-center w-100">
+                    <input type="text" name="search" class="form-control border-radius-0"
+                           placeholder="Nhập sản phẩm bạn muốn tìm">
+                    <button type="submit" class="btn btn-secondary border-radius-0">
+                        <i class="fa fa-search"
+                           aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- end search bar -->
+
+            <div class="col-lg-4 text-center my-2 my-lg-0">
+                <ul class="d-flex justify-content-lg-end justify-content-center align-items-center h-100">
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            Đăng nhập
+                        </a>
+                    </li>
+                    <li>
+                        <a href="register.html">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            Đăng ký
+                        </a>
+                    </li>                    <li>
+                        <a href="cart.html">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            Giỏ hàng
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header middle -->
+<!-- header menu -->
+<div id="header-menu">
+    <div class="container">
+        <div class="navigation">
+            <nav class="vg-nav vg-nav-lg">
+                <ul class="text-lg-center">
+                    <li class="active">
+                        <a href="home.html">Trang chủ </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Danh mục</a>
+                        <ul class="left text-left">
+                            <li class="dropdown">
+                                <a href="#">Danh mục 1</a>
+                                <ul class="left">
+                                    <li><a href="product.html">Danh mục dưới 1</a></li>
+                                    <li><a href="product.html">Danh mục dưới 1 - 1</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">Danh mục 2</a>
+                                <ul class="left">
+                                    <li><a href="product.html">Danh mục dưới 2</a></li>
+                                    <li><a href="product.html">Danh mục dưới 2 - 1</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown-mega">
+                        <a href="#">Sản phẩm</a>
+                        <div class="dropdown-mega-container">
+                            <div class="row">
+                                <div class="col-xl-3">Mega Sản Phẩm 1</div>
+                                <div class="col-xl-3">Mega Sản Phẩm 2</div>
+                                <div class="col-xl-3">Mega Sản Phẩm 3</div>
+                                <div class="col-xl-3">
+                                    <div class="slider">
+                                        <div class="slick-mega">
+                                            <img src="images/slider1.jpg" alt="" class="img-fluid">
+                                            <img src="images/slider2.jpg" alt="" class="img-fluid">
+                                            <img src="images/slider3.jpg" alt="" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="post.html">Tin tức</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Liên hệ</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- end header menu -->
+    </div>
+<!-- end header -->
+<!-- content -->
+<div id="content">
+    <div class="container">
+        <!-- breadcrumb -->
+        <ul class="list-inline mt-4">
+            <li class="list-inline-item mr-2">
+                <a class="u-link-v5 g-color-main" href="home.html"><i class="fa fa-home mr-1"></i>Trang chủ</a>
+                <i class="fa fa-angle-right g-ml-7"></i>
+            </li>
+            <li class="list-inline-item g-color-primary">
+                <span>Giỏ hàng</span>
+            </li>
+        </ul>
+        <!-- end breadcrumb -->
+        <!-- my cart -->
+        <div class="cart">
+            <div class="row mt-4">
+                <div class="col-lg-8">
+                    <table style="text-align: center;">
+                        <thead>
+                            <tr>
+                                <th width="100px" scope="col"></th>
+                                <th width="150px" scope="col">Tên sản phẩm</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Xoá</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mycart">
+                            <tr>
+                                <td>
+                                    <a href="d-product.html">
+                                        <img src="images/product.jpg" class="img-fluid" alt="">
+                                    </a>
+                                </td>
+                                <td data-label="Tên sản phẩm">
+                                    BỘ 2 LON SỮA BỘT FRISO GOLD 4 1.5KG + TẶNG GHẾ SOFA TUẦN LỘC TRỊ GIÁ 500K - CAM
+                                    KẾT
+                                    HSD ÍT NHẤT 10 THÁNG
+                                </td>
+                                <td data-label="Giá">47,000 VNĐ</td>
+                                <td data-label="Số lượng">
+                                    <input name="quantity" id="18"
+                                           class="form-control quantiy_product border-radius-0 d-inline" type="number"
+                                           value="6" min="1" max="1000">
+                                </td>
+                                <td data-label="Thành tiền">282,000VNĐ</td>
+                                <td data-label="Xoá">
+                                    <a href="" class="remove_cart">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-block text-center mb-4">
+                        <a href="product.html" class="btn btn-secondary border-radius-0 text-uppercase mt-4">
+                            Tiếp tục mua
+                            hàng
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="border">
+                        <div class="total p-1">
+                            <div class="row">
+                                <div class="col-lg-6 text-uppercase">Tổng tiền</div>
+                                <div class="col-lg-6 text-right">
+                                    282,000 VNĐ
+                                </div>
+                            </div>
+                        </div>
+                        <div class="note p-1">
+                            <p>Mua hàng trực tiếp tại cửa hàng giảm giá 5%</p>
+                            <p>Nếu đặt online Bạn hãy đồng ý với điều khoản sử dụng & hướng dẫn hoàn trả.</p>
+                        </div>
+                        <div class="p-1">
+                            <a href="info-order.html" class="border-radius-0 btn btn-secondary btn-block text-uppercase">
+                                Đặt
+                                hàng
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end my cart -->
+    </div>
+</div>
+<!-- end content -->
+<!-- footer -->
+<div id="footer" class="mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Hỗ trợ khách hàng</h5>
+                <p class="text-danger">Hotline chăm sóc khách hàng: <a href="tel:19006035">1900-6035</a></p>
+                <ul>
+                    <li><a href="">Các câu hỏi thường gặp</a></li>
+                    <li><a href="">Gửi yêu cầu hỗ trợ</a></li>
+                    <li><a href="">Hướng dẫn đặt hàng</a></li>
+                    <li><a href="">Phương thức vận chuyển</a></li>
+                    <li><a href="">Hướng dẫn mua trả góp</a></li>
+                    <li><a href="">Chính sách hàng nhập khẩu</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Về tiki</h5>
+                <ul>
+                    <li><a href="">Giới thiệu tiki</a></li>
+                    <li><a href="">Tuyển dụng</a></li>
+                    <li><a href="">Chính sách bảo mật thanh toán</a></li>
+                    <li><a href="">Chính sách bảo mật thông tin cá nhân</a></li>
+                    <li><a href="">Điều khoản sử dụng</a></li>
+                    <li><a href="">Tiki tư vấn</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Hợp tác và liên kết</h5>
+                <ul>
+                    <li><a href="">Quy chế hoạt động Sàn GDTMĐT</a></li>
+                    <li><a href="">Bán hàng cùng Tiki</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end footer -->
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/zoomsl.js"></script>
+<script src="js/main.js"></script>
+<script src="js/menu.js"></script>
+

@@ -1,0 +1,118 @@
+﻿@model IEnumerable<WebTiki.Models.CartModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#removecart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = $("#productid").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Remove", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    $('#CartCount').text(@Session["count"] - 1);
+                    $("#product-" + model.Id).remove();
+                },
+                error: function () {
+                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+
+
+
+
+
+
+<div>
+    <div>
+        <main class="col-md-15" style="margin:20px;">
+         
+                <h3><b> Giỏ hàng</b></h3>
+
+            
+
+                <table >
+                    <thead >
+                        <tr class="">
+                            <th scope="col" width="200"style="text-align:center">Sản phẩm</th>
+                            <th scope="col" width="200"></th>
+                            <th scope="col" width="200" style="text-align:center">Đơn giá</th>
+                            <th scope="col" width="200" style="text-align:center"> Số lượng </th>
+                            <th scope="col" width="200" style="text-align:right"> Xoá </th>
+                        </tr>
+                    </thead>
+                    <hr/>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr id="product-@item.Product.MaSP">
+                                    <td>
+                                        <figure class="itemside">
+                                            <div class="aside"><img src="~/Upload/ImgSP/@item.Product.Img" class="img-sm"></div>
+
+                                        </figure>
+                                    </td>
+                                    <td>
+                                        <figcaption class="info">
+                                            <a href="@Url.Action("ChiTietSP","SanPham",new {MaSP=@item.Product.MaSP})" class="title text-dark" style="color: black; text-decoration: none;">@item.Product.TenSP</a>
+                                        </figcaption>
+                                    </td>
+                                    <td>
+                                        <div class="price-wrap" style="text-align:center">
+                                            <var><span style="font-size:20px;">@item.Product.GiaMoi</span> <span style=" text-decoration: line-through;color:black; ">@item.Product.GiaCu</span></var>
+                                        </div> <!-- price-wrap .// -->
+                                    </td>
+                                    <td align="center">
+
+                                        <input class="btn btn-outline-danger" onclick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN(qty) &amp; qty > 1 ) result.value--;return false;" type='button' value='-' />
+                                        <input id='quantity' class="form-control" style="width:50px;text-align:center" min='1' name='quantity' type='text' value="@item.Quantity" />
+                                        <input class="btn btn-outline-danger" onclick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN(qty)) result.value++;return false;" type='button' value='+' />
+                                        
+
+                                    </td>
+                                    <td class="text-right">
+
+                                        <input type="hidden" value="@item.Product.MaSP " id="productid" />
+                                        <a href="" class="btn btn-light" id="removecart"> Xoá</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <p>Không có sản phẩm trong giỏ hàng</p>
+                        }
+
+
+                    </tbody>
+                </table>
+
+
+            <!-- card.// -->
+
+            <div class="alert alert-success mt-3" style="color:black">
+                <span>Shop Khuyến Mãi</span><span style="color:#808080"> Vui lòng chọn sản phẩm trước</span>
+            </div>
+
+        </main> <!-- col.// -->
+        
+
+ </div>
+</div>
